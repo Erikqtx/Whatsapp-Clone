@@ -1,3 +1,4 @@
+//firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyB9fgFR5beihGtMSvKNEcRGq5X4q1QDRzw",
   authDomain: "whatsapp-clone-8228d.firebaseapp.com",
