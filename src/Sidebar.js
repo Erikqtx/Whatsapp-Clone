@@ -4,12 +4,13 @@ import { Avatar, IconButton } from "@material-ui/core";
 import DonutLargeIcon from "@material-ui/icons/DonutLarge";
 import ChatIcon from "@material-ui/icons/Chat";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
-import { SearchOutlined } from "@material-ui/icons";
+import { SearchOutlined, Unsubscribe } from "@material-ui/icons";
 import SidebarChat from "./SidebarChat.js";
 import db from "./firebase";
 function Sidebar() {
   const [rooms, setRooms] = useState([]);
   useEffect(() => {
+    const unsubscribe = db.collection("rooms");
     db.collection("rooms").onSnapshot((snapshot) =>
       setRooms(
         snapshot.docs.map((doc) => ({
@@ -18,6 +19,9 @@ function Sidebar() {
         }))
       )
     );
+    return () => {
+      Unsubscribe();
+    };
   }, []);
   return (
     <div className="sidebar">
